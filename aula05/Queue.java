@@ -1,11 +1,11 @@
-package exercicio;
 
-public class Queue {
-    private Paciente data[];
+public class Queue <T> {
+    private T data[];
     private int end;
 
+    @SuppressWarnings("unchecked")
     public Queue(int size) {
-        data = new Paciente[size];
+        data = (T[]) new Object[size];
         end = 0;
     }
 
@@ -21,20 +21,12 @@ public class Queue {
         return end;
     }
 
-    // public Paciente peek() {
-    //     if(isEmpty()) {
-    //         return null;
-    //     }
-    //     return data[0];
-    // }
-
-    // evita retornar uma referência que pode ser
-    // usada para alterar um objeto na fila
-    public Paciente peek() {
+  
+    public T peek() {
         if(isEmpty()) {
             return null;
         }
-        return data[0].copy();
+        return data[0];
     }
 
     public String peekInfo() {
@@ -44,7 +36,7 @@ public class Queue {
         return data[0].toString();
     }
 
-    public boolean enqueue(Paciente paciente) {
+    public boolean enqueue(T paciente) {
         if(isFull()) {
             return false;
         }
@@ -52,11 +44,11 @@ public class Queue {
         return true;
     }
 
-    public Paciente dequeue() {
+    public T dequeue() throws Exception {
         if(isEmpty()) {
-            return null;
+            throw new Exception("Fila Vazia");
         }
-        Paciente paciente = data[0];
+        T paciente = data[0];
         for (int i = 0; i < end - 1; i++) {
             data[i] = data[i+1];
         }

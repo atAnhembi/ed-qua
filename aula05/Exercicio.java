@@ -1,8 +1,6 @@
-package exercicio;
-
 public class Exercicio {
 public static void main(String[] args) {
-    Queue pacientes = new Queue(3);
+    Queue<Paciente> pacientes = new Queue<>(3);
 
     pacientes.enqueue(new Paciente("Ana", 21));
     pacientes.enqueue(new Paciente("Bernardo", 22));
@@ -17,8 +15,12 @@ public static void main(String[] args) {
     Paciente proximo = pacientes.peek();
     proximo.setIdade(33);
     
-    System.out.println("Removeu: "+pacientes.dequeue());
-
+    try {
+        System.out.println("Removeu: "+pacientes.dequeue());
+    } catch (Exception e) {
+        System.out.println("Erro: " + e.getMessage());
+    }
+    
     System.out.println("Fila:");
     System.out.println(pacientes.show());
 

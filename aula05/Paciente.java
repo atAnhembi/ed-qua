@@ -1,4 +1,3 @@
-package exercicio;
 
 public class Paciente {
     private String nome;
